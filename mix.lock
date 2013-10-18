@@ -1,3 +1,4 @@
 [ "httpotion": {:git, "git://github.com/myfreeweb/httpotion.git", "b688c3342f58e32e10f3caa092225b5c8c26eb8b", [{:branch, "master"}]},
   "ibrowse": {:git, "git://github.com/cmullaparthi/ibrowse.git", "bbad869ea595c594912cf71fbd622aa80577c8f6", []},
-  "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "e50af6e109cb03bd26acf715cbc77de746507d1d", []} ]
+  "jsx": {:git, "git://github.com/talentdeficit/jsx.git", "e50af6e109cb03bd26acf715cbc77de746507d1d", []},
+  "tree_config": {:git, "git://github.com/nuxlli/tree_config.git", "c3604291ca74a5c5c0a9debf70061f8b4d5cf0da", []} ]
