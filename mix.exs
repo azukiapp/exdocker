@@ -4,7 +4,7 @@ defmodule Docker.Mixfile do
   def project do
     [ app: :exdocker,
       version: "0.0.1",
-      elixir: "~> 0.10.0",
+      elixir: "~> 0.10.3",
       deps: deps ]
   end
 
@@ -22,8 +22,8 @@ defmodule Docker.Mixfile do
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [
-      {:jsx, "1.4.1", [github: "talentdeficit/jsx", tag: "v1.4.1"]},
-      {:httpotion, "0.2.0", [github: "myfreeweb/httpotion", branch: "master"]}
+      {:jsx , github: "talentdeficit/jsx", compile: "rebar compile" },
+      {:httpotion, github: "myfreeweb/httpotion", branch: "master"}
     ]
   end
 end

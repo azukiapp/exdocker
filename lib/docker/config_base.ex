@@ -4,7 +4,7 @@ defmodule Docker.ConfigBase do
       def get(key) do
         case :application.get_env(unquote(app), key) do
           {:ok, {:from_env, env, default}} ->
-            System.get_env(env) || default
+            System.get_env("#{env}") || default
           {:ok, value} ->
             value
           :undefined ->

@@ -1,14 +1,11 @@
 defmodule Docker.Request do
   defmacro __using__(_opts) do
     quote do
-      import :macros, unquote(__MODULE__)
+      import unquote(__MODULE__), only: :macros
 
       @root_endpoint ""
     end
   end
-
-  @host quote(do: host // nil)
-  @options quote(do: options // [])
 
   defmacro root_endpoint(url) do
     quote do
@@ -17,20 +14,17 @@ defmodule Docker.Request do
   end
 
   defmacro entry(endpoint, url // nil) do
-    func = :"#{endpoint}"
-    url  = url || "/#{endpoint}"
+    func   = :"#{endpoint}"
+    url    = url || "/#{endpoint}"
+    module = __MODULE__
 
-    contents = quote do: (
-      if host do
-        options = Dict.put(options, :docker_host, host)
+    quote bind_quoted: binding do
+      def unquote(func)(host // nil, options // []) do
+        if host do
+          options = Dict.put(options, :docker_host, host)
+        end
+        unquote(module).request(:get, @root_endpoint <> unquote(url), "", [], options)
       end
-      unquote(__MODULE__).request(:get, @root_endpoint <> unquote(url), "", [], options)
-    )
-
-    quote do
-      args = [unquote(Macro.escape @host), unquote(Macro.escape @options)]
-      def unquote(func), args, [], do:
-        unquote(Macro.escape(contents, unquote: true))
     end
   end
 
